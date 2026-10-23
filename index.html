@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Electro Future – Gadgets, Import & Export</title>
+<meta name="description" content="Electro Future: electronics parts and gadgets import & export. Exchange-only policy. Order and pay via WhatsApp.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0a;--panel:#141414;--line:#2b2512;--gold:#f5b800;--gold2:#ffd54a;--text:#f2f2f2;--mute:#a8a8a8;--r:14px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:16px/1.6 Inter,system-ui,sans-serif}
+h1,h2,h3,.brand{font-family:Sora,Inter,sans-serif}
+a{color:var(--gold);text-decoration:none}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--gold2);outline-offset:2px}
+.wrap{max-width:1180px;margin:auto;padding:0 18px}
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:14px;height:68px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;color:#fff}
+.brand img{width:46px;height:46px;border-radius:50%}
+.brand span b{color:var(--gold)}
+nav{margin-left:auto;display:flex;gap:4px}
+nav a{color:var(--text);padding:8px 12px;border-radius:8px;font-weight:500;font-size:15px}
+nav a:hover,nav a.on{background:var(--panel);color:var(--gold)}
+.burger{display:none;margin-left:auto;background:none;border:1px solid var(--line);color:var(--gold);width:42px;height:42px;border-radius:10px;font-size:20px;cursor:pointer}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#111;border:0;padding:11px 20px;border-radius:999px;font:600 15px Inter;cursor:pointer}
+.btn:hover{background:var(--gold2)}
+.btn.ghost{background:none;color:var(--gold);border:1px solid var(--gold)}
+.btn.wa{background:#25d366;color:#08210f}
+/* pages */
+.page{display:none;padding:40px 0 70px;min-height:70vh}
+.page.on{display:block}
+h2{font-size:clamp(26px,4vw,38px);margin-bottom:10px;font-weight:800}
+.sub{color:var(--mute);max-width:62ch;margin-bottom:26px}
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center;padding:20px 0 50px}
+.hero h1{font-size:clamp(32px,6vw,56px);line-height:1.08;font-weight:800;margin-bottom:16px}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{color:var(--mute);margin-bottom:24px;max-width:52ch}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero img{width:100%;max-width:430px;justify-self:center;border-radius:50%;box-shadow:0 0 70px rgba(245,184,0,.25)}
+.strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px}
+.strip div{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.strip b{display:block;color:var(--gold);font-family:Sora}
+.strip span{color:var(--mute);font-size:14px}
+/* filters */
+.filters{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin-bottom:12px}
+input,select,textarea{width:100%;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:11px 12px;font:inherit}
+.count{color:var(--mute);font-size:14px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.card .img{aspect-ratio:4/3;background:#fff;display:flex;align-items:center;justify-content:center}
+.card .img img{width:100%;height:100%;object-fit:contain}
+.card .body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.tag{font-size:12px;color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:2px 10px;align-self:flex-start}
+.card h3{font-size:17px;line-height:1.3}
+.card p{color:var(--mute);font-size:14px}
+.card .acts{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap;padding-top:8px}
+.card .btn{padding:9px 14px;font-size:14px}
+.empty{grid-column:1/-1;text-align:center;color:var(--mute);padding:40px}
+/* text pages */
+.prose{max-width:780px}
+.prose h3{margin:26px 0 8px;color:var(--gold)}
+.prose p,.prose li{color:#d4d4d4;margin-bottom:10px}
+.prose ul{padding-left:20px}
+.notice{border:1px solid var(--gold);background:rgba(245,184,0,.08);border-radius:var(--r);padding:16px 18px;margin:18px 0;font-weight:500}
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;max-width:780px}
+summary{cursor:pointer;font-weight:600}
+details p{color:var(--mute);margin-top:10px}
+/* reviews */
+.rv{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+.rvbox{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-bottom:12px}
+.stars{color:var(--gold);letter-spacing:2px}
+.pick{display:flex;gap:4px;margin:6px 0 12px}
+.pick button{background:none;border:0;font-size:28px;color:#444;cursor:pointer}
+.pick button.on{color:var(--gold)}
+label{font-size:14px;color:var(--mute)}
+.f{margin-bottom:12px}
+/* contact */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;max-width:900px}
+.cgrid div{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px;word-break:break-word}
+.cgrid small{display:block;color:var(--mute)}
+.qr{display:flex;gap:22px;align-items:center;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px;max-width:780px;margin-top:22px}
+.qr img{width:170px;height:170px;object-fit:contain;background:#fff;border-radius:12px;padding:6px}
+/* footer */
+footer{border-top:1px solid var(--line);padding:30px 0 90px;color:var(--mute);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between}
+footer a{margin-right:14px}
+/* floating */
+.fab{position:fixed;right:16px;z-index:60;border:0;border-radius:50%;width:56px;height:56px;font-size:26px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);display:grid;place-items:center}
+#waFab{bottom:88px;background:#25d366}
+#chatFab{bottom:16px;background:var(--gold);color:#111}
+#chat{position:fixed;right:16px;bottom:84px;width:min(340px,calc(100vw - 32px));height:420px;background:var(--panel);border:1px solid var(--gold);border-radius:16px;z-index:70;display:none;flex-direction:column;overflow:hidden}
+#chat.on{display:flex}
+#chat header{position:static;padding:12px 14px;font-weight:600;display:flex;justify-content:space-between;background:#1b1704}
+#chat header button{background:none;border:0;color:#fff;font-size:20px;cursor:pointer}
+#msgs{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.m{max-width:85%;padding:8px 12px;border-radius:12px;font-size:14px}
+.m.bot{background:#222;align-self:flex-start}
+.m.me{background:var(--gold);color:#111;align-self:flex-end}
+#chat form{display:flex;gap:6px;padding:10px;border-top:1px solid var(--line)}
+#chat form button{background:var(--gold);border:0;border-radius:10px;padding:0 14px;font-weight:600;cursor:pointer}
+.quick{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 8px}
+.quick button{background:none;border:1px solid var(--line);color:var(--gold);border-radius:999px;padding:4px 10px;font-size:12px;cursor:pointer}
+@media(max-width:820px){
+ .burger{display:block}
+ nav{display:none;position:absolute;top:68px;left:0;right:0;background:var(--bg);flex-direction:column;padding:10px 18px 16px;border-bottom:1px solid var(--line)}
+ nav.open{display:flex}
+ .hero,.rv{grid-template-columns:1fr}
+ .hero img{max-width:260px;order:-1}
+ .filters{grid-template-columns:1fr 1fr}
+ .filters input{grid-column:1/-1}
+ .strip{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="wrap bar">
+  <a class="brand" href="#home"><img src="logo.png" alt="Electro Future logo"><span>Electro <b>Future</b></span></a>
+  <button class="burger" id="burger" aria-label="Menu">☰</button>
+  <nav id="nav">
+   <a href="#home">Home</a><a href="#shop">Shop</a><a href="#reviews">Reviews</a><a href="#about">About</a><a href="#faq">FAQs</a><a href="#contact">Contact</a>
+  </nav>
+ </div>
+</header>
+
+<main class="wrap">
+
+<!-- HOME -->
+<section class="page" id="home">
+ <div class="hero">
+  <div>
+   <h1>Electronics parts &amp; gadgets, <em>imported and exported</em> for you.</h1>
+   <p>Browse genuine components, boards and gadgets from trusted suppliers. Message us on WhatsApp to order, then pay by QR code.</p>
+   <div class="cta">
+    <a class="btn" href="#shop">Browse products</a>
+    <a class="btn wa" href="#" data-wa="Hello Electro Future, I want to place an order.">Order on WhatsApp</a>
+   </div>
+  </div>
+  <img src="logo.png" alt="Electro Future – Gadgets, Import, Export">
+ </div>
+ <div class="strip">
+  <div><b>Exchange-only policy</b><span>Swap within 15 days if the item is in original condition.</span></div>
+  <div><b>Ships in 3–7 business days</b><span>Orders are processed and dispatched promptly.</span></div>
+  <div><b>Pay by WhatsApp QR</b><span>Secure QR payment via WhatsApp Business.</span></div>
+ </div>
+ <h2>Featured products</h2>
+ <div class="grid" id="featured"></div>
+</section>
+
+<!-- SHOP -->
+<section class="page" id="shop">
+ <h2>Product catalog</h2>
+ <p class="sub">Search by name or part number, then filter by category or supplier.</p>
+ <div class="filters">
+  <input id="q" type="search" placeholder="Search products or part numbers" aria-label="Search">
+  <select id="cat" aria-label="Category"></select>
+  <select id="sup" aria-label="Supplier"></select>
+  <select id="sort" aria-label="Sort"><option value="">Sort: Featured</option><option value="az">Name A–Z</option><option value="za">Name Z–A</option></select>
+ </div>
+ <div class="count" id="count"></div>
+ <div class="grid" id="grid"></div>
+</section>
+
+<!-- REVIEWS -->
+<section class="page" id="reviews">
+ <h2>Customer reviews</h2>
+ <p class="sub">Bought from us? Tell others how it went.</p>
+ <div class="rv">
+  <div>
+   <div class="rvbox"><b id="avg" style="font-size:22px"></b> <span class="stars" id="avgStars"></span></div>
+   <div id="rvlist"></div>
+  </div>
+  <form class="rvbox" id="rvform">
+   <h3 style="margin-bottom:8px">Write a review</h3>
+   <div class="f"><label for="rn">Your name</label><input id="rn" required maxlength="40"></div>
+   <div class="f"><label>Rating</label><div class="pick" id="pick"></div></div>
+   <div class="f"><label for="rt">Your review</label><textarea id="rt" rows="4" required maxlength="400"></textarea></div>
+   <button class="btn" type="submit">Post review</button>
+  </form>
+ </div>
+</section>
+
+<!-- ABOUT -->
+<section class="page" id="about">
+ <div class="prose">
+  <h2>About Us</h2>
+  <p>Electro Future is an import and export business for electronics parts and gadgets. We source from trusted suppliers around the world and bring components, boards, and consumer devices to customers who need them.</p>
+  <h3>What we offer</h3>
+  <ul><li>Electronic components, development boards and kits</li><li>Replacement parts such as TV motherboards</li><li>Gadgets and accessories</li><li>Direct supplier links on every product, so you can check specs yourself</li></ul>
+  <h3>How ordering works</h3>
+  <ul><li>Pick a product and tap <b>Order on WhatsApp</b>.</li><li>We confirm availability and price with you.</li><li>You pay by QR code on WhatsApp.</li><li>We ship within 3 to 7 business days.</li></ul>
+ </div>
+</section>
+
+<!-- TERMS -->
+<section class="page" id="terms">
+ <div class="prose">
+  <h2>Terms &amp; Conditions</h2>
+  <div class="notice">At Electro Future, all products are eligible for exchange only. We do not offer refunds or returns; all sales are final.</div>
+  <h3>Exchange policy</h3>
+  <p>Products can be exchanged within 15 days of purchase if they are in their original condition.</p>
+  <h3>No refunds</h3>
+  <p>We operate on an exchange-only policy. Cash refunds are not available.</p>
+  <h3>Shipping</h3>
+  <p>Orders are typically processed and shipped within 3 to 7 business days.</p>
+  <h3>Payment</h3>
+  <p>We accept secure QR code payments via WhatsApp Business.</p>
+  <h3>Supplier links</h3>
+  <p>Product pages link to third-party supplier websites. We are not responsible for the content of those sites.</p>
+ </div>
+</section>
+
+<!-- PRIVACY -->
+<section class="page" id="privacy">
+ <div class="prose">
+  <h2>Privacy Policy</h2>
+  <p>We respect your privacy and collect only what we need to process your order.</p>
+  <h3>What we collect</h3>
+  <p>Your name, phone number, delivery address and order details, shared with us through WhatsApp. Reviews you post on this site are stored in your own browser.</p>
+  <h3>How we use it</h3>
+  <ul><li>To confirm, ship and exchange your orders</li><li>To answer your questions</li></ul>
+  <h3>Sharing</h3>
+  <p>We do not sell your personal data. We share delivery details with shipping partners only to complete your order.</p>
+  <h3>Payments</h3>
+  <p>Payments are made by QR code on WhatsApp. We never ask for card numbers or PINs.</p>
+  <h3>Contact</h3>
+  <p>For privacy questions, message us on WhatsApp at +91 9144079526.</p>
+ </div>
+</section>
+
+<!-- FAQ -->
+<section class="page" id="faq">
+ <h2>FAQs</h2>
+ <p class="sub">Quick answers about shipping, exchanges and payment.</p>
+ <details open><summary>How long does shipping take?</summary><p>Orders are typically processed and shipped within 3 to 7 business days.</p></details>
+ <details><summary>Can I exchange an item?</summary><p>Yes, products can be exchanged within 15 days of purchase if they are in their original condition.</p></details>
+ <details><summary>What payment methods do you accept?</summary><p>We accept secure QR code payments via WhatsApp Business.</p></details>
+ <details><summary>Do you offer refunds?</summary><p>We operate on an exchange-only policy; cash refunds are not available.</p></details>
+</section>
+
+<!-- CONTACT -->
+<section class="page" id="contact">
+ <h2>Contact &amp; payment</h2>
+ <p class="sub">Message us on WhatsApp to order, ask about stock, or request your payment QR code.</p>
+ <div class="cgrid">
+  <div><small>WhatsApp</small><a href="#" data-wa="Hello Electro Future!">+91 9144079526</a></div>
+  <div><small>Email</small><a href="mailto:electro.e.future@gmail.com" >electro.e.future@gmail.com</a></div>
+  <div><small>Instagram</small><a href="https://instagram.com/electro.e.future" target="_blank" rel="noopener">@electro.e.future</a></div>
+  <div><small>Facebook</small><a href="https://www.facebook.com/search/top?q=Electro%20Future" target="_blank" rel="noopener">Electro Future</a></div>
+ </div>
+ <div class="qr">
+  <img src="payment-qr.png" alt="WhatsApp payment QR code" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 170 170%22%3E%3Crect width=%22170%22 height=%22170%22 fill=%22%23eee%22/%3E%3Ctext x=%2285%22 y=%2290%22 font-size=%2213%22 text-anchor=%22middle%22 fill=%22%23555%22%3EAdd payment-qr.png%3C/text%3E%3C/svg%3E'">
+  <div>
+   <h3>Pay by QR code</h3>
+   <p style="color:var(--mute);margin:6px 0 14px">After we confirm your order on WhatsApp, scan this QR code to pay. Send us the payment screenshot so we can ship.</p>
+   <a class="btn wa" href="#" data-wa="Hello Electro Future, please send me the payment QR code for my order.">Request QR on WhatsApp</a>
+  </div>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ <div class="wrap">
+  <div><b style="color:#fff">Electro Future</b><br>Gadgets · Import · Export<br>Exchange only. All sales final.</div>
+  <div><a href="#terms">Terms &amp; Conditions</a><a href="#privacy">Privacy Policy</a><a href="#faq">FAQs</a></div>
+  <div>© <span id="yr"></span> Electro Future</div>
+ </div>
+</footer>
+
+<!-- floating buttons -->
+<button class="fab" id="waFab" aria-label="Chat on WhatsApp" data-wa="Hello Electro Future!">💬</button>
+<button class="fab" id="chatFab" aria-label="Live support">🎧</button>
+<div id="chat" role="dialog" aria-label="Live support">
+ <header><span>Electro Future Support</span><button id="chatX" aria-label="Close">×</button></header>
+ <div id="msgs"></div>
+ <div class="quick"><button>Shipping time</button><button>Exchange</button><button>Payment</button><button>Talk to a person</button></div>
+ <form id="cform"><input id="cin" placeholder="Type a message" aria-label="Message"><button>Send</button></form>
+</div>
+
+<script>
+/* ============ EDIT YOUR SETTINGS HERE ============ */
+const WA_NUMBER = "919144079526";
+/* Product data. Change title, image, category, supplier, desc, link any time. */
+const PRODUCTS = [
+ {id:1, title:"Arduino Certification Bundle: Kit & Exam (AKX00020)", cat:"Development Boards", sup:"OnlineComponents.com",
+  img:"https://media.onlinecomponents.com/images/parts/webp-large-images/58259910.webp",
+  desc:"Arduino certification kit with exam. Part no. AKX00020.",
+  link:"https://www.onlinecomponents.com/en/productdetail/arduino/akx00020-58259910.html"},
+ {id:2, title:"Featured Gadget (Amazon.in)", cat:"Gadgets", sup:"Amazon.in",
+  img:"product2.jpg", /* paste the product image URL here */
+  desc:"Gadget available through our Amazon.in supplier link.",
+  link:"https://amzn.in/d/0eNIhVGH"},
+ {id:3, title:"Original LED TV Motherboard 3234FHD", cat:"TV Parts", sup:"China Supplier",
+  img:"product3.jpg", /* paste the product image URL here */
+  desc:"Tested and genuine LED TV motherboard for model 3234FHD.",
+  link:"https://share.google/4SlG4GaJxt6B7qx27"},
+ {id:4, title:"Featured Product (Amazon.in)", cat:"Gadgets", sup:"Amazon.in",
+  img:"product4.jpg", /* paste the product image URL here */
+  desc:"Product available through our Amazon.in supplier link.",
+  link:"https://amzn.in/d/0a23GXg3"}
+];
+/* ================================================== */
+
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const waURL=t=>`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(t)}`;
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ph=t=>"data:image/svg+xml,"+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="#111"/><text x="200" y="145" font-size="22" fill="#f5b800" text-anchor="middle" font-family="sans-serif">Electro Future</text><text x="200" y="175" font-size="14" fill="#888" text-anchor="middle" font-family="sans-serif">${t}</text></svg>`);
+
+/* routing */
+function route(){
+ const id=(location.hash||"#home").slice(1);
+ const ok=$("#"+id)&&$("#"+id).classList.contains("page")?id:"home";
+ $$(".page").forEach(p=>p.classList.toggle("on",p.id===ok));
+ $$("nav a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+ok));
+ $("#nav").classList.remove("open"); scrollTo(0,0);
+}
+addEventListener("hashchange",route);
+$("#burger").onclick=()=>$("#nav").classList.toggle("open");
+$("#yr").textContent=new Date().getFullYear();
+
+/* WhatsApp links */
+document.addEventListener("click",e=>{
+ const el=e.target.closest("[data-wa]"); if(!el) return;
+ e.preventDefault(); window.open(waURL(el.dataset.wa),"_blank","noopener");
+});
+
+/* products */
+function cardHTML(p){
+ const img=p.img||ph(p.cat);
+ return `<article class="card">
+  <div class="img"><img src="${esc(img)}" alt="${esc(p.title)}" loading="lazy" onerror="this.onerror=null;this.src='${ph(esc(p.cat))}'"></div>
+  <div class="body"><span class="tag">${esc(p.cat)}</span><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p>
+  <p>Supplier: <b>${esc(p.sup)}</b></p>
+  <div class="acts"><a class="btn wa" href="#" data-wa="Hello Electro Future, I want to order: ${esc(p.title)}">Order on WhatsApp</a>
+  <a class="btn ghost" href="${esc(p.link)}" target="_blank" rel="noopener">Supplier link</a></div></div></article>`;
+}
+$("#featured").innerHTML=PRODUCTS.slice(0,4).map(cardHTML).join("");
+const opts=(k,all)=>`<option value="">${all}</option>`+[...new Set(PRODUCTS.map(p=>p[k]))].map(v=>`<option>${esc(v)}</option>`).join("");
+$("#cat").innerHTML=opts("cat","All categories"); $("#sup").innerHTML=opts("sup","All suppliers");
+function render(){
+ const q=$("#q").value.trim().toLowerCase(), c=$("#cat").value, s=$("#sup").value, o=$("#sort").value;
+ let list=PRODUCTS.filter(p=>(!c||p.cat===c)&&(!s||p.sup===s)&&(!q||(p.title+p.desc+p.cat+p.sup).toLowerCase().includes(q)));
+ if(o==="az")list.sort((a,b)=>a.title.localeCompare(b.title)); if(o==="za")list.sort((a,b)=>b.title.localeCompare(a.title));
+ $("#count").textContent=list.length+" product"+(list.length===1?"":"s");
+ $("#grid").innerHTML=list.length?list.map(cardHTML).join(""):'<div class="empty">No products match. Try a different search or clear the filters.</div>';
+}
+["#q","#cat","#sup","#sort"].forEach(i=>$(i).addEventListener("input",render)); render();
+
+/* reviews (stored in this browser; connect a backend to share across visitors) */
+let rating=5, reviews=[];
+try{reviews=JSON.parse(localStorage.getItem("ef_reviews")||"[]")}catch(e){}
+if(!reviews.length)reviews=[];
+function drawPick(){ $("#pick").innerHTML=[1,2,3,4,5].map(n=>`<button type="button" class="${n<=rating?'on':''}" data-n="${n}" aria-label="${n} stars">★</button>`).join(""); }
+$("#pick").onclick=e=>{const b=e.target.closest("button");if(b){rating=+b.dataset.n;drawPick()}}; drawPick();
+function drawReviews(){
+ const n=reviews.length, avg=n?reviews.reduce((a,r)=>a+r.r,0)/n:0;
+ $("#avg").textContent=n?avg.toFixed(1)+" / 5":"No reviews yet";
+ $("#avgStars").textContent=n?"★".repeat(Math.round(avg))+"☆".repeat(5-Math.round(avg)):"";
+ $("#rvlist").innerHTML=reviews.map(r=>`<div class="rvbox"><div class="stars">${"★".repeat(r.r)}${"☆".repeat(5-r.r)}</div><p>${esc(r.t)}</p><small style="color:var(--mute)">${esc(r.n)} · ${esc(r.d)}</small></div>`).join("")||'<div class="rvbox" style="color:var(--mute)">Be the first to review Electro Future.</div>';
+}
+$("#rvform").onsubmit=e=>{e.preventDefault();
+ reviews.unshift({n:$("#rn").value.trim(),r:rating,t:$("#rt").value.trim(),d:new Date().toLocaleDateString()});
+ try{localStorage.setItem("ef_reviews",JSON.stringify(reviews))}catch(e){}
+ e.target.reset(); rating=5; drawPick(); drawReviews();
+}; drawReviews();
+
+/* live support widget */
+const msgs=$("#msgs");
+function say(t,who){const d=document.createElement("div");d.className="m "+who;d.textContent=t;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight}
+const answers=[
+ [/ship|deliver|how long/i,"Orders are typically processed and shipped within 3 to 7 business days."],
+ [/exchange|swap|replace/i,"You can exchange an item within 15 days of purchase if it is in its original condition."],
+ [/refund|return|money back/i,"We operate on an exchange-only policy. Cash refunds are not available."],
+ [/pay|qr|upi/i,"We accept secure QR code payments via WhatsApp Business. Message us to get your QR code."],
+ [/person|human|agent|whatsapp|talk/i,"Opening WhatsApp so you can talk to our team."]
+];
+function ask(t){
+ say(t,"me");
+ const hit=answers.find(a=>a[0].test(t));
+ setTimeout(()=>{
+  say(hit?hit[1]:"Thanks! For this one, please message our team on WhatsApp and we will help.","bot");
+  if(!hit||/person|human|agent|whatsapp|talk/i.test(t))setTimeout(()=>window.open(waURL("Hello Electro Future, I need help: "+t),"_blank","noopener"),600);
+ },500);
+}
+say("Hi! Ask about shipping, exchanges or payment.","bot");
+$("#chatFab").onclick=()=>$("#chat").classList.toggle("on");
+$("#chatX").onclick=()=>$("#chat").classList.remove("on");
+$(".quick").onclick=e=>{if(e.target.tagName==="BUTTON")ask(e.target.textContent)};
+$("#cform").onsubmit=e=>{e.preventDefault();const v=$("#cin").value.trim();if(v){ask(v);$("#cin").value=""}};
+
+route();
+</script>
+</body>
+</html>
